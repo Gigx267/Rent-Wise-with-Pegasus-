@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pegasus - Nigeria's premier platform for finding apartments for rent and shortlets in Abuja and Lagos.">
+    <meta name="keywords" content="apartments for rent in Abuja, Lagos rental properties, Nigeria real estate, find apartments Abuja, rent house Lagos, affordable housing Nigeria">
+    <title>Pegasus | Apartments Platform</title>
+    <link rel="icon" href="Rent Wise Logo .png" type="image/x-icon">
+    <style>
+        /* Airbnb-inspired Styles */
+        :root {
+            --airbnb-red: #FF5A5F;
+            --airbnb-dark: #484848;
+            --airbnb-light: #767676;
+            --airbnb-white: #FFFFFF;
+            --airbnb-background: #FFFFFF;
+            --airbnb-border: #EBEBEB;
+            --airbnb-hover: #F7F7F7;
+            --airbnb-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--airbnb-background);
+            color: var(--airbnb-dark);
+            font-family: 'Circular', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Header/Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--airbnb-white);
+            padding: 14px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--airbnb-border);
+            box-shadow: var(--airbnb-shadow);
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--airbnb-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--airbnb-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 10px 0;
+        }
+
+        .nav-link:hover {
+            color: var(--airbnb-red);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .host-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--airbnb-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .host-link:hover {
+            color: var(--airbnb-red);
+        }
+
+        .language-selector {
+            font-size: 14px;
+            color: var(--airbnb-dark);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .language-selector:hover {
+            background-color: var(--airbnb-hover);
+        }
+
+        .menu-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border: 1px solid var(--airbnb-border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .menu-button:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+        }
+
+        .user-icon {
+            font-size: 16px;
+            color: var(--airbnb-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 40px;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://cdn.dribbble.com/userupload/42098016/file/original-95161d967fb850a082d81e3143129a34.gif');
+            background-size: cover;
+            background-position: center;
+            color: var(--airbnb-white);
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--airbnb-white);
+            border-radius: 60px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 16px 24px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-button {
+            padding: 16px 24px;
+            background-color: var(--airbnb-red);
+            color: var(--airbnb-white);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            background-color: #FF7075;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: var(--airbnb-dark);
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .option-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--airbnb-shadow);
+            height: 400px;
+        }
+
+        .option-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .option-card:hover .option-image {
+            transform: scale(1.05);
+        }
+
+        .option-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+        }
+
+        .option-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--airbnb-white);
+        }
+
+        .option-desc {
+            font-size: 16px;
+            color: var(--airbnb-white);
+            margin-bottom: 24px;
+            max-width: 400px;
+        }
+
+        .option-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--airbnb-white);
+            color: var(--airbnb-red);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .option-button:hover {
+            background-color: var(--airbnb-red);
+            color: var(--airbnb-white);
+        }
+
+        /* Featured Properties */
+        .featured-properties {
+            margin-bottom: 80px;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .property-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--airbnb-shadow);
+        }
+
+        .property-image-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .property-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover .property-image {
+            transform: scale(1.05);
+        }
+
+        .wishlist-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 28px;
+            height: 28px;
+            background-color: var(--airbnb-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .wishlist-button:hover {
+            transform: scale(1.1);
+        }
+
+        .wishlist-icon {
+            color: var(--airbnb-dark);
+            font-size: 14px;
+        }
+
+        .property-content {
+            padding: 16px;
+        }
+
+        .property-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .property-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--airbnb-dark);
+            margin-bottom: 4px;
+        }
+
+        .property-location {
+            font-size: 14px;
+            color: var(--airbnb-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--airbnb-light);
+        }
+
+        .property-price {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--airbnb-dark);
+        }
+
+        .price::before {
+            content: '₦';
+        }
+
+        .night {
+            color: var(--airbnb-light);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .star-icon {
+            color: var(--airbnb-red);
+            font-size: 12px;
+        }
+
+        .rating-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Locations Section */
+        .locations-section {
+            margin-bottom: 80px;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .location-card {
+            position: relative;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .location-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--airbnb-shadow);
+        }
+
+        .location-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--airbnb-white);
+        }
+
+        .location-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .property-count {
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--airbnb-background);
+            border-top: 1px solid var(--airbnb-border);
+            padding: 40px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--airbnb-dark);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: var(--airbnb-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--airbnb-red);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid var(--airbnb-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: var(--airbnb-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            color: var(--airbnb-dark);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--airbnb-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 1128px) {
+            .properties-grid, .locations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 950px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 14px 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 60px 24px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .main-content {
+                padding: 24px;
+            }
+            
+            .options-grid {
+                gap: 24px;
+            }
+            
+            .option-card {
+                height: 320px;
+            }
+            
+            .option-title {
+                font-size: 24px;
+            }
+            
+            .option-overlay {
+                padding: 24px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .host-link {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            
+            .search-input {
+                padding: 12px 16px;
+            }
+            
+            .search-button {
+                padding: 12px 16px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .option-card {
+                height: 280px;
+            }
+            
+            .option-title {
+                font-size: 20px;
+            }
+            
+            .option-desc {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="Rent Wise Logo  (1).png" alt="Pegasus Logo">
+            Pegasus
+        </a>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About us</a>
+            <a href="contact.html" class="nav-link">Contact Us</a>
+        </div>
+        
+        <div class="user-menu">
+            <a href="#" class="host-link">Become a Host</a>
+            <div class="language-selector">EN</div>
+            <div class="menu-button">
+                <i class="fas fa-bars user-icon"></i>
+                <i class="fas fa-user-circle user-icon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Find Your Perfect Space</h1>
+        <p class="hero-subtitle">Discover premium apartments and shortlets in Abuja and Lagos for your next stay or long-term rental</p>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search locations, properties, or amenities...">
+            <button class="search-button">Search</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Options Grid -->
+        <div class="options-grid">
+            <!-- Shortlets Option -->
+            <div class="option-card" onclick="window.location.href='shortlets.html'">
+                <img src="https://cdn.dribbble.com/userupload/11652343/file/original-e47b146cda05b27d3b0e50d2a61c784b.jpeg?format=webp&resize=640x480&vertical=center" alt="Shortlet Apartments" class="option-image">
+                <div class="option-overlay">
+                    <h2 class="option-title">Shortlet Apartments</h2>
+                    <p class="option-desc">Perfect for those needing temporary accommodation - a better choice than hotels.</p>
+                    <a href="shortlets.html" class="option-button">Explore Shortlets</a>
+                </div>
+            </div>
+
+            <!-- Apartments for Rent Option -->
+            <div class="option-card" onclick="window.location.href='rent.html'">
+                <img src="https://cdn.dribbble.com/userupload/12272754/file/original-7c7eda7729af8c888e2d60ea13cb868e.jpeg?format=webp&resize=640x480&vertical=center" alt="Apartments for Rent" class="option-image">
+                <div class="option-overlay">
+                    <h2 class="option-title">Apartments For Rent</h2>
+                    <p class="option-desc">Discover long-term rental options perfect for establishing your home in Abuja and Lagos.</p>
+                    <a href="rent.html" class="option-button">Find Rentals</a>
+                </div>
+            </div>
+        </div>
+
+      
+
+        <!-- Popular Locations -->
+        <section class="locations-section">
+            <h2 class="section-title">Explore Popular Locations</h2>
+            <div class="locations-grid">
+                <!-- Location 1 -->
+                <div class="location-card">
+                    <img src="https://cdn.dribbble.com/userupload/42165558/file/original-b2c6cfe1638dec46ded85bdf3d719361.jpg?format=webp&resize=640x480&vertical=center" alt="Abuja" class="location-image">
+                    <div class="location-overlay">
+                        <div class="location-name">Abuja</div>
+                        <div class="property-count">124 properties</div>
+                    </div>
+                </div>
+
+                <!-- Location 2 -->
+                <div class="location-card">
+                    <img src="https://cdn.dribbble.com/userupload/42165140/file/original-7fefd091229d6edead20f105f5e15053.jpg?format=webp&resize=640x480&vertical=center" alt="Lagos" class="location-image">
+                    <div class="location-overlay">
+                        <div class="location-name">Lagos</div>
+                        <div class="property-count">98 properties</div>
+                    </div>
+                </div>
+
+                <!-- Location 3 -->
+                <div class="location-card">
+                    <img src="https://cdn.dribbble.com/userupload/42499466/file/original-45d1d46ee3a56fc72b6d54f642a21b6a.jpg?format=webp&resize=640x480&vertical=center" alt="Maitama" class="location-image">
+                    <div class="location-overlay">
+                        <div class="location-name">Maitama</div>
+                        <div class="property-count">36 properties</div>
+                    </div>
+                </div>
+
+                <!-- Location 4 -->
+                <div class="location-card">
+                    <img src="https://cdn.dribbble.com/userupload/42165487/file/original-bdb388f086010c37b9ea8f2f34a18505.jpg?format=webp&resize=640x480&vertical=center" alt="Lekki" class="location-image">
+                    <div class="location-overlay">
+                        <div class="location-name">Lekki</div>
+                        <div class="property-count">42 properties</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Support</h3>
+                <div class="footer-links">
+                    <a href="support.html" class="footer-link">Help Center</a>
+                    <a href="support.html" class="footer-link">Safety information</a>
+                    <a href="support.html" class="footer-link">Cancellation options</a>
+                    <a href="support.html" class="footer-link">Report an issue</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Community</h3>
+                <div class="footer-links">
+                    <a href="Blog.html" class="footer-link">Refer a friend</a>
+                    <a href="Blog.html" class="footer-link">Community forum</a>
+                    <a href="Blog.html" class="footer-link">Travel stories</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Hosting</h3>
+                <div class="footer-links">
+                    <a href="Host.html" class="footer-link">List your property</a>
+                    <a href="Host.html" class="footer-link">Host resources</a>
+                    <a href="Host.html" class="footer-link">Host community</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>About</h3>
+                <div class="footer-links">
+                    <a href="about.html" class="footer-link">About Pegasus</a>
+                    <a href="about.html" class="footer-link">Careers</a>
+                    <a href="about.html" class="footer-link">Press</a>
+                    <a href="contact.html" class="footer-link">Contact us</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>© 2025 Pegasus, Inc. All rights reserved</p>
+            </div>
+            
+            <div class="social-links">
+                <a href="contact.html" class="social-link">Privacy</a>
+                <a href="about.html" class="social-link">Terms</a>
+               
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const handleMobileMenu = () => {
+                const menuButton = document.querySelector('.menu-button');
+                const navLinks = document.querySelector('.nav-links');
+                
+                if (menuButton && navLinks) {
+                    menuButton.addEventListener('click', () => {
+                        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                    });
+                }
+            };
+
+            // Language selector functionality
+            const setupLanguageSelector = () => {
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector) {
+                    languageSelector.addEventListener('click', () => {
+                        alert('Language selection coming soon! Currently only English is available.');
+                    });
+                }
+            };
+
+            // Wishlist functionality
+            const setupWishlist = () => {
+                const wishlistButtons = document.querySelectorAll('.wishlist-button');
+                
+                wishlistButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const icon = button.querySelector('.wishlist-icon');
+                        
+                        if (icon.classList.contains('far')) {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas');
+                            icon.style.color = '#FF5A5F';
+                        } else {
+                            icon.classList.remove('fas');
+                            icon.classList.add('far');
+                            icon.style.color = '';
+                        }
+                    });
+                });
+            };
+
+            // Initialize all functions
+            const init = () => {
+                handleMobileMenu();
+                setupLanguageSelector();
+                setupWishlist();
+            };
+
+            init();
+        });
+    </script>
+</body>
+</html>
